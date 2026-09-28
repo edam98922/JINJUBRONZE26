@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지 {{ page_num }}</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overscroll-behavior-y: none;
+        }
+
+        /* 이미지를 담는 전체 영역 */
+        #image-container {
+            width: 100vw;
+            /* 위아래 스크롤은 자연스럽게 작동하도록 허용 */
+            touch-action: pan-y; 
+        }
+
+        /* 기본적으로 모든 이미지를 화면에서 숨김 */
+        .slide-image {
+            width: 100%;
+            display: none; 
+        }
+
+        /* active 클래스가 붙은 단 하나의 이미지만 화면에 즉시 표시됨 */
+        .slide-image.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    {% if images %}
+    <div id="image-container">
+        {% for img in images %}
+        <!-- loop.index0이 0일 때(첫 번째 사진)만 'active' 클래스를 주어 보이게 합니다 -->
+        <img src="{{ url_for('static', filename=img) }}" 
+             class="slide-image {% if loop.index0 == 0 %}active{% endif %}" 
+             alt="페이지 {{ page_num }} 이미지">
+        {% endfor %}
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.slide-image');
+        let currentIndex = 0;
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        const container = document.getElementById('image-container');
+
+        // 손가락이 화면에 닿았을 때의 X, Y 좌표 기록
+        container.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+            touchStartY = event.changedTouches[0].screenY;
+        });
+
+        // 손가락이 화면에서 떨어졌을 때의 X, Y 좌표 기록 및 방향 계산
+        container.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            touchEndY = event.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeDistanceX = touchStartX - touchEndX;
+            const swipeDistanceY = Math.abs(touchStartY - touchEndY);
+
+            // 위아래로 많이 움직였다면 글을 읽기 위해 스크롤하는 중이므로 무시 (오작동 방지)
+            if (swipeDistanceY > 40) return;
+
+            // 좌우로 40px 이상 밀었을 때만 즉시 사진을 교체
+            if (swipeDistanceX > 40) {
+                // 왼쪽으로 밀었을 때 (다음 사진)
+                if (currentIndex < images.length - 1) {
+                    images[currentIndex].classList.remove('active'); // 현재 사진 숨김
+                    currentIndex++;
+                    images[currentIndex].classList.add('active'); // 다음 사진 즉시 표시
+                }
+            } else if (swipeDistanceX < -40) {
+                // 오른쪽으로 밀었을 때 (이전 사진)
+                if (currentIndex > 0) {
+                    images[currentIndex].classList.remove('active'); // 현재 사진 숨김
+                    currentIndex--;
+                    images[currentIndex].classList.add('active'); // 이전 사진 즉시 표시
+                }
+            }
+            
+            // 사진이 바뀔 때 세로 스크롤 위치는 그대로 유지됩니다.
+        }
+    </script>
+    {% else %}
+    <h1 style="text-align: center; margin-top: 50px;">해당 번호에 등록된 사진이 없습니다.</h1>
+    {% endif %}
+
+</body>
+</html>
