@@ -1,0 +1,11 @@
+{
+    "1": ["QR1-1.jpg", "QR1-2.jpg", "QR1-3.jpg", "QR1-4.jpg", "QR1-5.jpg", "QR1-6.jpg", "QR1-7.jpg", "QR1-8.jpg", "QR1-9.jpg"],
+    "2": ["QR2-1.jpg", "QR2-2.jpg", "QR2-3.jpg"],
+    "3": ["QR3-1.jpg", "QR3-2.jpg", "QR3-3.jpg", "QR3-4.jpg", "QR3-5.jpg", "QR3-6.jpg"],
+    "4": ["QR4-1.jpg", "QR4-2.jpg", "QR4-3.jpg", "QR4-4.jpg", "QR4-5.jpg", "QR4-6.jpg","QR4-7.jpg", "QR4-8.jpg", "QR4-10.jpg","QR4-11.jpg", "QR4-12.jpg", "QR4-13.jpg", "QR4-14.jpg","QR4-15.jpg", "QR4-16.jpg", "QR4-17.jpg", "QR4-18.jpg", "QR4-19.jpg"],
+    "5": ["QR5-1.jpg", "QR5-2.jpg", "QR5-3.jpg", "QR5-4.jpg", "QR5-5.jpg", "QR5-6.jpg","QR5-7.jpg", "QR5-8.jpg","QR5-11.jpg", "QR5-12.jpg", "QR5-13.jpg"],
+    "6": ["QR6-1.jpg", "QR6-2.jpg", "QR6-3.jpg", "QR6-4.jpg", "QR6-5.jpg", "QR6-6.jpg","QR6-7.jpg"],
+    "7": ["QR7-1.jpg", "QR7-2.jpg", "QR7-3.jpg", "QR7-4.jpg", "QR7-5.jpg", "QR7-6.jpg","QR7-7.jpg", "QR7-8.jpg", "QR7-10.jpg","QR7-11.jpg", "QR7-12.jpg"],
+    "8": ["QR8-1.jpg", "QR8-2.jpg", "QR8-3.jpg", "QR8-4.jpg", "QR8-5.jpg", "QR8-6.jpg"],
+    "9": ["QR9-1.jpg", "QR9-2.jpg", "QR9-3.jpg"]
+}
